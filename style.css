@@ -1,9 +1,9 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('imagens/Menu.jpeg');
-    background-size: cover;
-    background-position: center;
+    background-image: url('imagens/Menu.jpg');
+    background-size: contain;
+    background-position: 50% 50%;
     height: 100vh;
     font-family: Arial, sans-serif;
 }

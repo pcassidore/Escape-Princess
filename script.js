@@ -10,8 +10,8 @@ function navegar(tela) {
     somClique.volume = document.getElementById('volumeEfeitos').value;
     somClique.play();
 
-    if (tela === 'jogo') {
-        trilha.play(); // Só começa a música quando for iniciar o jogo
+    if (tela === 'inicio') {
+        trilha.play(); // Só começa a música quando for iniciar o menu
     }
 
     document.querySelectorAll('.tela').forEach(div => {

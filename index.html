@@ -6,12 +6,17 @@
 </head>
 <body>
 
-    <div id="menu" class="tela ativa">
+     <div id="menu" class="tela ativa">
         <div class="botoes">
-            <button onclick="navegar('jogo')">INICIAR</button>
-            <button style="font-weight: bold;">INICIAR</button>
+            <button onclick="navegar('inicio')">INICIAR</button>
+        </div>
+    </div>
+    
+    <div id="inicio" class="tela">
+        <div class="botoes">
+            <button onclick="navegar('jogo')">JOGAR</button>
             <button onclick="navegar('opcoes')">OPÇÕES</button>
-            <button onclick="navegar('sair')">SAIR</button>
+            <button onclick="navegar('creditos')">CRÉDITOS</button>
         </div>
     </div>
 
@@ -34,8 +39,8 @@
         <button onclick="navegar('menu')">Voltar</button>
     </div>
 
-    <div id="sair" class="tela">
-        <h1>Obrigado por jogar!</h1>
+    <div id="creditos" class="tela">
+        <h1>Desenvolvido por Maria Eduarda, Miguel, Rafaela, Patrick e Vitor da turma ESOFT3S-N-A!<h1>
         <button onclick="navegar('menu')">Voltar</button>
     </div>
 
