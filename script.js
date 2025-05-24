@@ -1,42 +1,12 @@
-const trilha = document.getElementById('trilha');
-const somClique = document.getElementById('somClique');
-const somHover = document.getElementById('somHover');
+function tocarSom() {
+    var audio = document.getElementById("myAudio");
+    var icone = document.getElementById("iconeSom");
 
-// Iniciar trilha sonora
-trilha.volume = 0.5;
-
-// Navegação SPA
-function navegar(tela) {
-    somClique.volume = document.getElementById('volumeEfeitos').value;
-    somClique.play();
-
-    if (tela === 'inicio') {
-        trilha.play(); // Só começa a música quando for iniciar o menu
+    if (audio.paused) {
+        audio.play();
+        icone.src = "imagens/icone_som.png"; // Ícone som ligado
+    } else {
+        audio.pause();
+        icone.src = "imagens/icone_semsom.png"; // Ícone som desligado
     }
-
-    document.querySelectorAll('.tela').forEach(div => {
-        div.classList.remove('ativa');
-    });
-    document.getElementById(tela).classList.add('ativa');
 }
-
-// Efeito sonoro de hover
-document.querySelectorAll('button').forEach(button => {
-    button.addEventListener('mouseenter', () => {
-        somHover.volume = document.getElementById('volumeEfeitos').value;
-        somHover.play();
-    });
-});
-
-// Controle de volume
-document.getElementById('volumeMusica').addEventListener('input', (e) => {
-    trilha.volume = e.target.value;
-});
-
-// Velocidade do jogador
-let velocidadeJogador = 5;
-
-document.getElementById('velocidadeJogador').addEventListener('input', (e) => {
-    velocidadeJogador = e.target.value;
-    console.log("Velocidade do Jogador:", velocidadeJogador);
-});
