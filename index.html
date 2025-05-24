@@ -1,53 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Princess</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-
-     <div id="menu" class="tela ativa">
-        <div class="botoes">
-            <button onclick="navegar('inicio')">INICIAR</button>
-        </div>
-    </div>
-    
-    <div id="inicio" class="tela">
-        <div class="botoes">
-            <button onclick="navegar('jogo')">JOGAR</button>
-            <button onclick="navegar('opcoes')">OPÇÕES</button>
-            <button onclick="navegar('creditos')">CRÉDITOS</button>
-        </div>
+    <a href="https://www.friv.com/" class="botao1">
+        <img src="imagens/botao_iniciar.jpeg" alt="Iniciar">
+    </a>
+    <a href="https://mario.com/" class="botao2">
+        <img src="imagens/botao_opções.jpeg"Opções">
+    </a>
+    <a href="https://www.clickjogos.com.br/" class="botao3">
+        <img src="imagens/botao_sair.jpeg"Sair">
+    </a>
+    <div>   
+        <img id="iconeSom" src="imagens/icone_som.png" alt="som" class="som" onclick="tocarSom()">
     </div>
 
-    <div id="jogo" class="tela">
-        <h1>Jogo em desenvolvimento...</h1>
-        <button onclick="navegar('menu')">Voltar</button>
-    </div>
+    <audio id="myAudio">
+        <source src="musica.mp3" type="audio/mpeg">
+        Seu navegador
+    </audio>
+    <script src="javascript.js"></script>
 
-    <div id="opcoes" class="tela">
-        <h1>Opções</h1>
-        <label>Volume da Música:
-            <input type="range" id="volumeMusica" min="0" max="1" step="0.1" value="0.5">
-        </label><br>
-        <label>Volume dos Efeitos:
-            <input type="range" id="volumeEfeitos" min="0" max="1" step="0.1" value="0.5">
-        </label><br>
-        <label>Velocidade do Jogador:
-            <input type="range" id="velocidadeJogador" min="1" max="10" value="5">
-        </label><br>
-        <button onclick="navegar('menu')">Voltar</button>
-    </div>
-
-    <div id="creditos" class="tela">
-        <h1>Desenvolvido por Maria Eduarda, Miguel, Rafaela, Patrick e Vitor da turma ESOFT3S-N-A!<h1>
-        <button onclick="navegar('menu')">Voltar</button>
-    </div>
-
-    <audio id="trilha" src="audio/trilha.mp3" loop></audio>
-    <audio id="somClique" src="audio/clique.mp3"></audio>
-    <audio id="somHover" src="audio/hover.mp3"></audio>
-
-    <script src="script.js"></script>
 </body>
 </html>
