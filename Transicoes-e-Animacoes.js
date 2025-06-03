@@ -1,6 +1,6 @@
 // transitions_animations_examples.js
 // Este arquivo contém exemplos de código para transições e animações
-// extraídos do projeto "Escape Princess" em Phaser 3.
+// extraídos do projeto "Escape Princess" em Phaser 3 (versão com escadas).
 
 // ==================================================
 // 1. Transição Circular (StartScene -> MainMenuScene)
@@ -44,14 +44,13 @@ function startCircularTransition(scene, targetSceneKey) {
             // Inicia a próxima cena APÓS a tela estar coberta
             scene.scene.start(targetSceneKey);
             // O círculo será destruído quando a cena atual for encerrada.
-            // Se precisar de uma animação de "fechamento" na nova cena,
-            // a lógica precisaria ser implementada lá.
         }
     });
 }
 
 // Exemplo de uso dentro de uma cena (ex: StartScene):
-// this.startCircularTransition("MainMenuScene");
+// // No método create() ou em um callback de botão:
+// startCircularTransition(this, "MainMenuScene");
 
 
 // ==================================================
@@ -65,13 +64,15 @@ function startCircularTransition(scene, targetSceneKey) {
  * @param {Phaser.Scene} scene - A cena atual (this)
  * @param {string} targetSceneKey - A chave da cena de destino
  * @param {number} [duration=500] - Duração do fade em milissegundos
+ * @param {function} [onFadeComplete] - Callback opcional chamado após o fade e antes de iniciar a nova cena
  */
-function fadeOutToScene(scene, targetSceneKey, duration = 500) {
+function fadeOutToScene(scene, targetSceneKey, duration = 500, onFadeComplete) {
     scene.cameras.main.fadeOut(duration, 0, 0, 0, (camera, progress) => {
         if (progress === 1) {
             console.log(`Fade Out completo. Iniciando ${targetSceneKey}`);
-            // Para músicas ou sons específicos da cena atual antes de mudar
-            // Ex: if (scene.menuMusic) scene.menuMusic.stop();
+            if (onFadeComplete) {
+                onFadeComplete.call(scene);
+            }
             scene.scene.start(targetSceneKey);
         }
     });
@@ -83,20 +84,27 @@ function fadeOutToScene(scene, targetSceneKey, duration = 500) {
  * @param {Phaser.Scene} scene - A cena atual (this)
  * @param {object} [data={}] - Dados a serem passados para a cena reiniciada
  * @param {number} [duration=500] - Duração do fade em milissegundos
+ * @param {function} [onFadeComplete] - Callback opcional chamado após o fade e antes de reiniciar a cena
  */
-function fadeOutToRestart(scene, data = {}, duration = 500) {
+function fadeOutToRestart(scene, data = {}, duration = 500, onFadeComplete) {
+    // Previne múltiplas transições simultâneas
+    if (scene.cameras.main.fadeEffect.isRunning) {
+        console.warn("Fade já em andamento, ignorando nova solicitação.");
+        return;
+    }
     scene.cameras.main.fadeOut(duration, 0, 0, 0, (camera, progress) => {
         if (progress === 1) {
             console.log("Fade Out completo. Reiniciando cena.");
-            // Para músicas ou sons específicos da cena atual antes de reiniciar
-            // Ex: if (scene.gameMusic) scene.gameMusic.stop();
+            if (onFadeComplete) {
+                onFadeComplete.call(scene);
+            }
             scene.scene.restart(data);
         }
     });
 }
 
 /**
- * Inicia uma transição de Fade In da câmera ao criar a cena.
+ * Inicia uma transição de Fade In da câmera ao criar/reiniciar a cena.
  * Deve ser chamado dentro do método `create()` da cena.
  * @param {Phaser.Scene} scene - A cena atual (this)
  * @param {number} [duration=500] - Duração do fade em milissegundos
@@ -108,11 +116,11 @@ function fadeInOnLoad(scene, duration = 500) {
 
 // Exemplo de uso dentro de uma cena:
 // // No MainMenuScene, para ir ao jogo:
-// fadeOutToScene(this, "GameScene");
+// fadeOutToScene(this, "GameScene", 500, () => { if (this.menuMusic) this.menuMusic.stop(); });
 // // No GameScene, no create():
 // fadeInOnLoad(this);
 // // No GameScene, para ir ao próximo mapa:
-// fadeOutToRestart(this, { mapIndex: nextMap });
+// fadeOutToRestart(this, { mapIndex: nextMap }, 500, () => { if (this.gameMusic) this.gameMusic.stop(); });
 
 
 // ==================================================
@@ -131,8 +139,10 @@ function fadeInOnLoad(scene, duration = 500) {
 function setupButtonAnimations(scene, button, onClickCallback, hoverSoundKey = "sfxHover", clickSoundKey = "sfxClick") {
     button.setInteractive({ useHandCursor: true });
 
-    const sfxHover = scene.sound.add(hoverSoundKey, { volume: scene.registry.get("sfxVolume", 0.5) });
-    const sfxClick = scene.sound.add(clickSoundKey, { volume: scene.registry.get("sfxVolume", 0.5) });
+    // Tenta obter o volume do registro, senão usa um padrão
+    const sfxVolume = scene.registry.get("sfxVolume") !== undefined ? scene.registry.get("sfxVolume") : 0.5;
+    const sfxHover = scene.sound.add(hoverSoundKey, { volume: sfxVolume });
+    const sfxClick = scene.sound.add(clickSoundKey, { volume: sfxVolume });
 
     button.on("pointerover", () => {
         scene.tweens.killTweensOf(button); // Para animações anteriores se houver
@@ -158,7 +168,8 @@ function setupButtonAnimations(scene, button, onClickCallback, hoverSoundKey = "
             onComplete: () => {
                 button.setScale(1.0); // Garante escala final correta
                 if (onClickCallback) {
-                    onClickCallback.call(scene); // Chama o callback principal
+                    // Adiciona um pequeno delay para o som terminar antes da ação
+                    scene.time.delayedCall(50, () => onClickCallback.call(scene)); 
                 }
             }
         });
@@ -166,8 +177,12 @@ function setupButtonAnimations(scene, button, onClickCallback, hoverSoundKey = "
 }
 
 // Exemplo de uso dentro de uma cena:
+// // No método create():
 // const myButton = this.add.image(x, y, "buttonImage");
-// setupButtonAnimations(this, myButton, () => { console.log("Botão clicado!"); });
+// setupButtonAnimations(this, myButton, () => { 
+//     console.log("Botão clicado!"); 
+//     // Ex: fadeOutToScene(this, "NextScene");
+// });
 
 
 // ==================================================
@@ -176,16 +191,20 @@ function setupButtonAnimations(scene, button, onClickCallback, hoverSoundKey = "
 // Origem: GameScene.js (showFeedbackText)
 
 /**
- * Mostra um texto na tela e o faz desaparecer após um tempo.
+ * Mostra um texto na tela (relativo à visão da câmera) e o faz desaparecer após um tempo.
  * @param {Phaser.Scene} scene - A cena atual (this)
- * @param {number} x - Posição X do texto
- * @param {number} y - Posição Y do texto
  * @param {string} text - O conteúdo do texto
  * @param {object} style - Objeto de estilo do texto Phaser
+ * @param {number} [yOffset=150] - Deslocamento Y a partir do topo da visão da câmera
  * @param {number} [duration=2000] - Tempo visível antes de desaparecer (ms)
  */
-function showTemporaryFeedbackText(scene, x, y, text, style, duration = 2000) {
-    const feedbackText = scene.add.text(x, y, text, style).setOrigin(0.5);
+function showTemporaryFeedbackText(scene, text, style, yOffset = 150, duration = 2000) {
+    const feedbackText = scene.add.text(
+        scene.cameras.main.worldView.x + scene.cameras.main.width / 2, 
+        scene.cameras.main.worldView.y + yOffset, 
+        text, 
+        style
+    ).setOrigin(0.5);
     
     // Animação de fade out usando tweens
     scene.tweens.add({
@@ -201,14 +220,18 @@ function showTemporaryFeedbackText(scene, x, y, text, style, duration = 2000) {
 }
 
 // Exemplo de uso dentro de uma cena:
-// const feedbackStyle = { font: "30px Arial", fill: "#00ff00" };
-// showTemporaryFeedbackText(this, this.cameras.main.centerX, 100, "Enigma Resolvido!", feedbackStyle, 2500);
+// // Ao resolver um enigma:
+// const feedbackStyle = { font: "40px 'MedievalSharp', cursive", fill: "#00ff00", stroke: "#000", strokeThickness: 4 };
+// showTemporaryFeedbackText(this, "Enigma Resolvido!", feedbackStyle);
+// // Em caso de erro:
+// const errorStyle = { ...feedbackStyle, fill: "#ff0000" };
+// showTemporaryFeedbackText(this, "Código Incorreto!", errorStyle);
 
 
 // ==================================================
 // 5. Animação de Clique em Objeto Interativo (Enigma)
 // ==================================================
-// Origem: GameScene.js (handleEnigma1Input)
+// Origem: GameScene.js (handleEnigma1Input, etc.)
 
 /**
  * Aplica uma animação de "pulso" (escala) a um objeto quando clicado.
@@ -216,18 +239,25 @@ function showTemporaryFeedbackText(scene, x, y, text, style, duration = 2000) {
  * @param {Phaser.GameObjects.GameObject} targetObject - O objeto que foi clicado
  */
 function animateObjectClick(scene, targetObject) {
-    scene.tweens.add({
-        targets: targetObject,
-        scale: 1.2, // Aumenta a escala
-        duration: 100, // Duração curta
-        yoyo: true, // Retorna à escala original
-        ease: "Sine.easeInOut"
-    });
+    // Garante que o objeto tenha o método setScale (Imagens, Sprites, Textos, etc.)
+    if (typeof targetObject.setScale === 'function') {
+        scene.tweens.add({
+            targets: targetObject,
+            scale: 1.2, // Aumenta a escala
+            duration: 100, // Duração curta
+            yoyo: true, // Retorna à escala original
+            ease: "Sine.easeInOut"
+        });
+    } else {
+        console.warn("Objeto não suporta setScale para animação de clique.", targetObject);
+    }
 }
 
 // Exemplo de uso dentro de uma função de clique:
-// myInteractiveObject.on("pointerdown", () => {
-//     animateObjectClick(this, myInteractiveObject);
-//     // ...outra lógica...
+// // Dentro de setupEnigma:
+// interactiveObject.on("pointerdown", () => {
+//     animateObjectClick(this, interactiveObject);
+//     this.sound.play("sfxClick", { volume: this.registry.get("sfxVolume", 0.5) });
+//     // ...lógica do enigma...
 // });
 
