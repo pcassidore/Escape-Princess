@@ -1,19 +1,22 @@
+/* Personalização Padrão para todos elementos da pagina */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Configurações do corpo todo da página */
 body {
-    background-image: url('imagens/Menu\ pronto.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    background-image: url('imagens/Menu_pronto.jpeg'); /* Imagem de fundo */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    background-size: cover; /*O fundo Cobre toda a tela */
+    background-position: center; /* Centraliza a imagem */
+    width: 100vw; /* Largura */
+    height: 100vh; /* Altura */
+    overflow: hidden; /* Oculta rolagens */
 }
 
+/* Personalização do Botão Iniciar */
 .botao1 {
     position: absolute;
     top: 75%; /* Ajuste a altura */
@@ -22,26 +25,26 @@ body {
     cursor: pointer;
 }
 
-.botao img {
-    width: 300px; 
-}
 
+/* Personalização do Botão Opções */
 .botao2 {
     position: absolute;
-    top: 90%; 
+    top: 90%; /* Ajuste a altura */
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
 }
 
+/* Personalização do Botão Sair */
 .botao3 {
     position: absolute;
-    top: 110%; 
+    top: 110%; /* Ajuste a altura */
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
 }
 
+/* Personalização do Botão Icone do Som */
 .som {
     position: absolute;
     top: 10%;
