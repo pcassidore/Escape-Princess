@@ -31,7 +31,7 @@ body {
 }
 
 /* Personalização da Imagem do Titulo do Jogo Escape Princess */
-.princesa_tela {
+.titulo_jogo {
     position: absolute;
     top: 0px; /* Fixa no topo da tela */
 }
