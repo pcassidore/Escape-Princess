@@ -5,9 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape Princess</title>
     <link rel="stylesheet" href="style.css">
-
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+    
+        body, html {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
+    
+        .background {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
+        }
+    
+        .title {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 60%;
+          transform: translate(-50%, -50%) scale(0.2);
+          animation: zoomIn 2s ease-out forwards;
+          z-index: 1;
+        }
+    
+        @keyframes zoomIn {
+          to {
+            transform: translate(-50%, -50%) scale(1);
+          }
+        }
+    </style>
 </head>
 <body>
+    <img src="bg.jpg" class="background" alt="Fundo">
+    <img src="title.png" class="title" alt="Título Animado">
     <a href="https://www.friv.com/" class="botao1">
         <img src="imagens/botao_iniciar.jpeg" alt="Iniciar">
     </a>
