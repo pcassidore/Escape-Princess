@@ -1,0 +1,100 @@
+/* Personalização geral para remover margens e bordas padrão de todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Mantém a largura e altura incluindo padding e border */
+}
+
+/* Configurações do corpo todo da página */
+body {
+    background-image: url('./imagens/fundo.PNG'); /* Imagem de fundo */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    background-size: cover; /*O fundo Cobre toda a tela */
+    background-position: center; /* Centraliza a imagem */
+    width: 100vw;  /* Ocupa 100% da largura da tela */
+    height: 100vh;  /* Ocupa 100% da altura da tela */
+    overflow: hidden;  /* Remove barras de rolagem */
+    display: flex;   /* Ativa o Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;  /* Centraliza verticalmente */
+}
+
+/* Container que engloba todo o conteúdo */
+.conteiner {
+    height: 100%; /* Ocupa toda a altura da tela */
+    width: 100%; /* Ocupa toda a largura da tela */
+    display: flex; /* Ativa Flexbox (sistema de organização dos elementos na tela) */
+    flex-direction: column; /* Organiza os filhos(elementos dentro do container) em coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    position: relative; /* Permite posicionamento absoluto dos elementos filhos */
+}
+
+.tela {
+    display: none;
+    padding-top: 50px;
+}
+
+.tela.ativa {
+    display: block;
+}
+
+/* Personalização da Imagem do Titulo do Jogo Escape Princess */
+.titulo_jogo {
+    animation: pulsar 1.5s infinite alternate;
+    position: absolute;
+    top: 0px; /* Fixa no topo da tela */
+}
+
+@keyframes pulsar {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+/* Container dos botões Iniciar e Sair */
+.botoes {
+    display: flex; /* Ativa Flexbox */
+    flex-direction: column; /* Organiza os botões na vertical */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    width: 50%; /* Ocupa 50% da largura do container */
+    max-width: 280px; /* Limita o tamanho máximo */
+    position: absolute; /* Permite fixar na tela */
+    bottom: 2vh; /* Posiciona próximo à parte inferior da tela */
+    cursor: pointer; /* Cursor em formato de mão ao passar por cima */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Animação suave para o botão */
+}
+
+button:hover {
+    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+    background-color: darkorange; /* Muda a cor de fundo ao passar o mouse */
+}
+
+/* Estilo dos botões */
+.botao {
+    display: block; /* Faz a imagem ocupar toda a linha */
+    width: 100%; /* Faz a imagem do botão ocupar toda a largura do container */
+}
+
+#transicao {
+    position: fixed; /* Fixa o elemento na tela, independente de rolagem */
+    top: 50%; /* Posiciona no centro vertical da tela */
+    left: 50%; /* Posiciona no centro horizontal da tela */
+    width: 0; /* Largura inicial zero */
+    height: 0; /* Altura inicial zero */
+    background: black; /* Fundo preto para o efeito */
+    border-radius: 50%; /* Forma circular */
+    transform: translate(-50%, -50%); /* Centraliza o círculo */
+    transition: all 0.4s ease; /* Animação suave para qualquer mudança de estilo */
+    z-index: 1000; /* Coloca o elemento acima de todos os outros */
+}
+
+/* Estilo do ícone de som */
+.som {
+    position: absolute; /* Fixa na tela */
+    top: 20px; /* Distância do topo */
+    right: 20px; /* Distância da direita */
+    cursor: pointer; /* Muda o cursor ao passar sobre */
+    width: 100px; /* Define a largura do ícone */
+    height: auto; /* Mantém a proporção da imagem */
+}
