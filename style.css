@@ -39,9 +39,12 @@ body {
     display: block; /* Exibe a tela quando tiver a classe "ativa" */
 }
 
-/* Personalização da Imagem do Titulo do Jogo Escape Princess */
 .titulo_jogo {
     animation: pulsar 1.5s infinite alternate; /* Aplica a animação 'pulsar' continuamente */
+
+}
+
+.titulo_jogo {
     position: absolute;
     top: 0px; /* Fixa no topo da tela */
 }
@@ -61,6 +64,7 @@ body {
     max-width: 280px; /* Limita o tamanho máximo */
     position: absolute; /* Permite fixar na tela */
     bottom: 2vh; /* Posiciona próximo à parte inferior da tela */
+
     cursor: pointer; /* Cursor em formato de mão ao passar por cima */
     transition: transform 0.2s ease, background-color 0.2s ease; /* Animação suave para o botão */
 }
@@ -68,6 +72,7 @@ body {
 button:hover {
     transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
     background-color: darkorange; /* Muda a cor de fundo ao passar o mouse */
+
 }
 
 /* Estilo dos botões */
