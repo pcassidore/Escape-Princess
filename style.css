@@ -31,24 +31,24 @@ body {
 }
 
 .tela {
-    display: none;
-    padding-top: 50px;
+    display: none; /* Esconde a tela por padrão */
+    padding-top: 50px; /* Espaço acima do conteúdo da tela */
 }
 
 .tela.ativa {
-    display: block;
+    display: block; /* Exibe a tela quando tiver a classe "ativa" */
 }
 
 /* Personalização da Imagem do Titulo do Jogo Escape Princess */
 .titulo_jogo {
-    animation: pulsar 1.5s infinite alternate;
+    animation: pulsar 1.5s infinite alternate; /* Aplica a animação 'pulsar' continuamente */
     position: absolute;
     top: 0px; /* Fixa no topo da tela */
 }
 
 @keyframes pulsar {
-    from { transform: scale(1); }
-    to { transform: scale(1.1); }
+    from { transform: scale(1); }   /* Começa com tamanho normal */
+    to { transform: scale(1.1); }   /* Aumenta um pouco de tamanho, criando o efeito de pulsar */
 }
 
 /* Container dos botões Iniciar e Sair */
