@@ -37,14 +37,11 @@ body {
 
 .tela.ativa {
     display: block; /* Exibe a tela quando tiver a classe "ativa" */
+
 }
 
 .titulo_jogo {
     animation: pulsar 1.5s infinite alternate; /* Aplica a animação 'pulsar' continuamente */
-
-}
-
-.titulo_jogo {
     position: absolute;
     top: 0px; /* Fixa no topo da tela */
 }
@@ -64,7 +61,6 @@ body {
     max-width: 280px; /* Limita o tamanho máximo */
     position: absolute; /* Permite fixar na tela */
     bottom: 2vh; /* Posiciona próximo à parte inferior da tela */
-
     cursor: pointer; /* Cursor em formato de mão ao passar por cima */
     transition: transform 0.2s ease, background-color 0.2s ease; /* Animação suave para o botão */
 }
