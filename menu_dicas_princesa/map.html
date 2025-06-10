@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Princess</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+      
+        body {
+            background-color: black;
+            background-image: url('./mapas/1.png');
+        }
+      
+        .lampada1 {
+            margin-top: 12vh;
+        }
+
+        /* modal style */
+        #modal {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            max-width: 90%;
+            min-height: 300px;
+            background-color: #ffd900;
+            border: 0.5rem solid rgb(255, 162, 0);
+            padding: 1.2rem;
+            border-radius: 2rem;
+            z-index: 10;
+            }
+
+        #fade {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9;
+            transition: 0.5s;
+            opacity: 1;
+            pointer-events: all;
+        }
+        #modal {
+            transition: 0.5s;
+            opacity: 1;
+            pointer-events: all;
+            
+            }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #625904;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            }
+        
+        .modal-text {
+            font-size: 5vh;
+            font-family:cursive;
+        }
+        
+        #close-modal {
+            padding: 5px 10px;
+            border: 2px solid gold;
+            background-color: hsl(51, 100%, 77%);
+            border-radius: 30%;
+            font-weight: bold;
+        }
+
+        .modal-body p {
+            margin-bottom: 1rem;
+            }
+
+        #modal.hide,
+        #fade.hide {
+            opacity: 0;
+            pointer-events: none;
+            }
+
+        #modal.hide {
+            top: 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="">
+        <div> 
+            <img id="iconeSom" src="imagens/icone_som.png" alt="som" class="som" onclick="tocarSom()"> 
+        </div>
+        <audio id="myAudio">
+            <source src="musica.mp3" type="audio/mpeg">
+            Seu navegador
+        </audio>
+        <!-- tag da lâmpada -->
+        <div> 
+            <img id="open-modal" src="./imagens/lampada2.png" alt="dica" class="som lampada1"> 
+        </div>
+    </div>
+
+    <!-- modal -->
+    <div id="fade" class="hide"></div>
+    <div id="modal" class="hide">
+      <div class="modal-header">
+        <p style="font-weight: bold;"> Dica </p>
+        <button id="close-modal"> x </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-text"></p>
+
+      </div>
+    </div>
+
+    <script src="javascript.js"></script>
+    <script>
+        
+     
+    </script>
+ </body>
+</html>
