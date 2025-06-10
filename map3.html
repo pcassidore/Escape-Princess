@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa 1</title>
+  <link rel="stylesheet" href="jogo3.css">
+</head>
+<body id="fundo"> <!-- imagem de fundo grande -->
+  <div id="mapa">
+
+  <div id="princesa" style="top: 350px; left: 1300px;"></div> <!-- Princesa -->
+
+  <!-- Paredes visuais simuladas -->
+  <div class="parede" style="top: 690px; left: -100px; width: 1920px; height: 50px;"></div> <!-- chão principal -->
+  <div class="parede" style="top: 430px; left: 990px; width: 1250px; height: 30px;"></div> <!-- plataforma direita bau -->
+  <div class="parede" style="top: 420px; left: -100px; width: 380px; height: 30px;"></div> <!-- plataforma da segundo andar(cima) -->
+  <div class="parede" style="top: 570px; left: 300px; width: 10px; height: 30px;"></div> <!-- ajuda -->
+  <div class="parede" style="top: 530px; left: 290px; width: 5px; height: 30px;"></div> <!-- ajuda -->
+  <div class="parede" style="top: 420px; left: 250px; width: 40px; height: 1080px;"></div> <!-- Parede direita da corda -->
+  
+  <!-- Rampa invisível para subida da princesa -->
+    <div class="parede" style="top: 460px; left: 940px; width: 7px; height: 10px;"></div>
+    <div class="parede" style="top: 480px; left: 930px; width: 7px; height: 10px;"></div>
+    <div class="parede" style="top: 500px; left: 920px; width: 7px; height: 10px;"></div>
+    <div class="parede" style="top: 520px; left: 910px; width: 7px; height: 10px;"></div>
+    <div class="parede" style="top: 540px; left: 900px; width: 5px; height: 10px;"></div>
+    <div class="parede" style="top: 560px; left: 890px; width: 5px; height: 10px;"></div>
+    <div class="parede" style="top: 580px; left: 880px; width: 5px; height: 10px;"></div>
+    <div class="parede" style="top: 600px; left: 860px; width: 5px; height: 10px;"></div>
+    <div class="parede" style="top: 620px; left: 850px; width: 5px; height: 10px;"></div>
+    <div class="parede" style="top: 640px; left: 840px; width: 8px; height: 10px;"></div>
+    <div class="parede" style="top: 660px; left: 830px; width: 8px; height: 10px;"></div>
+
+    <div class="escalavel" style="top: 420px; left: 390px; height: 250px; width: 2px;"></div>
+</div>
+
+  <!-- Porta para o próximo mapa -->
+  <div class="porta" style="top: 350px; left: 100px;" data-destino="map4.html"></div>
+
+  <script src="jogo.js"></script>
+</body>
+</html>

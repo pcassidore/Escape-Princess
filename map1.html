@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa 1</title>
+  <link rel="stylesheet" href="jogo.css">
+</head>
+<body id="fundo"> <!-- imagem de fundo grande -->
+  <div id="mapa">
+
+  <div id="princesa" style="top: 0px; left: 280px;"></div> <!-- Princesa -->
+
+  <!-- Paredes visuais simuladas -->
+  <div class="parede" style="top: 680px; left: -100px; width: 1920px; height: 50px;"></div> <!-- chão principal -->
+  <div class="parede" style="top: 620px; left: 1080px; width: 180px; height: 30px;"></div> <!-- Plataforma lateral (baixa) -->
+  <div class="parede" style="top: 465px; left: 1260px; width: 180px; height: 40px;"></div> <!-- Plataforma direita direita -->
+  <div class="parede" style="top: 620px; left: 1080px; width: 40px; height: 140px;"></div> <!-- parede lateral direita (chão) -->
+  <div class="parede" style="top: 465px; left: 1250px; width: 40px; height: 140px;"></div> <!-- parede lateral direita (baixa) -->
+  <div class="parede" style="top: 570px; left: 1200px; width: 65px; height: 30px;"></div> <!-- plataforma direita estatua -->
+  <div class="parede" style="top: 225px; left: 840px; width: 360px; height: 30px;"></div> <!-- plataforma direita bau -->
+  <div class="parede" style="top: 80px; left: 1220px; width: 40px; height: 200px;"></div> <!-- parede direita bau -->
+  <div class="parede" style="top: 345px; left: -100px; width: 880px; height: 30px;"></div> <!-- plataforma da escada -->
+  <div class="parede" style="top: 225px; left: 400px; width: 40px; height: 140px;"></div> <!-- parede lateral da esquerda (maior) -->
+  <div class="parede" style="top: 285px; left: 370px; width: 10px; height: 90px;"></div> <!-- parede lateral da esquerda (menor) -->
+  <div class="parede" style="top: 225px; left: 480px; width: 100px; height: 30px;"></div> <!-- plataforma esquerda alta -->
+  <div class="parede" style="top: 66px; left: 200px; width: 360px; height: 30px;"></div> <!-- plataforma superior esquerda -->
+  <div class="parede" style="top: 0px; left: 1300px; width: 40px; height: 1080px;"></div> <!-- Parede direita do fundo (impede sair do lado direito) -->
+  
+  <!-- Rampa invisível para subida da princesa -->
+  <div class="parede" style="top: 365px; left: 650px; width: 40px; height: 10px;"></div>
+  <div class="parede" style="top: 345px; left: 640px; width: 40px; height: 10px;"></div>
+  <div class="parede" style="top: 325px; left: 630px; width: 40px; height: 10px;"></div>
+  <div class="parede" style="top: 305px; left: 620px; width: 40px; height: 10px;"></div>
+  <div class="parede" style="top: 285px; left: 610px; width: 40px; height: 10px;"></div>
+  <div class="parede" style="top: 265px; left: 600px; width: 40px; height: 10px;"></div>
+  <div class="parede" style="top: 245px; left: 580px; width: 40px; height: 10px;"></div>
+
+</div>
+
+  <!-- Porta para o próximo mapa -->
+  <div class="porta" style="top: 600px; left: 100px;" data-destino="map2desaf.html"></div>
+
+  <script src="jogo.js"></script>
+</body>
+</html>

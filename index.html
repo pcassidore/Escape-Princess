@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Escape Princess</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sala1.css">
+</head>
+<body>
+
+  <!-- Tela de introdução -->
+  <div id="intro" class="intro-container">
+  <img src="imagens/title.png" alt="Título" class="intro-title">
+  <div class="botoes">
+    <a href="#" onclick="iniciarTransicao()">
+      <img src="imagens/introducao_button.png" alt="Entrar" class="botao">
+    </a>
+  </div>
+</div>
+
+  <div class="circle-transition hidden" id="circleTransition"></div>
+
+  <!-- Tela de menu -->
+  <div id="menu" class="conteiner hidden">
+    <img src="imagens/titulo.png" alt="princesa" class="titulo_jogo">
+    <div class="botoes">
+      <a href="#" onclick="iniciarJogoComTransicao()">
+      <img src="imagens/botao_iniciar.png" alt="Iniciar" class="botao">
+      </a>
+      <a href="#" onclick="voltarParaIntro()">
+        <img src="imagens/botao_sair.png" alt="Sair" class="botao">
+      </a>
+    </div>
+    <div>
+      <img id="iconeSom" src="imagens/icone_som.png" alt="som" class="som" onclick="tocarSom()">
+    </div>
+    <audio id="myAudio">
+      <source src="musica.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+  </div>
+
+  <!-- Tela do jogo da Sala 1 -->
+  <div id="jogo" class="hidden">
+    <div id="game-container">
+      <div id="room"></div>
+      <div id="dica"></div>
+    </div>
+  </div>
+
+  <!-- Scripts necessários -->
+  <script src="script.js"></script>
+  <script src="sala1.js"></script>
+  <script>
+    function mostrarJogo() {
+      animateTransition(() => {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('jogo').classList.remove('hidden');
+      });
+    }
+  </script>
+
+</body>
+</html>

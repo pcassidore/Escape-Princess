@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#fundo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('imagens/fundo.PNG'); /* <- use sua imagem larga */
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+/* Mapa centralizado */
+#mapa {
+  position: relative;
+  width: 1365px; /* largura real da imagem do mapa */
+  height: 768px;  /* altura real da imagem do mapa */
+  margin: 0 auto;
+  background-image: url('mapas/1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center top;
+  z-index: 0;
+}
+
+/* Princesa */
+#princesa {
+  position: absolute;
+  top: 690px;
+  left: 100px;
+  width: 48px;
+  height: 64px;
+  background-image: url('imagens/princesa_paradadireita.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+
+.parede {
+  position: absolute;
+  z-index: 1;
+}
+
+.porta {
+  position: absolute;
+  width: 48px;
+  height: 64px;
+  z-index: 2;
+}
+
+.fade {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
