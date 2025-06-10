@@ -1,71 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Princess</title>
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsividade -->
+    <title>Escape Princess</title> <!-- Título da aba do navegador -->
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Link para um CSS externo -->
     <style>
-      
+        /* Define o fundo do corpo da página */
         body {
-            background-color: black;
-            background-image: url('./mapas/1.png');
+            background-color: black; /* Cor de fundo */
+            background-image: url('./mapas/1.png'); /* Imagem de fundo (mapa) */
         }
-      
+
+        /* Margem do topo para a lâmpada */
         .lampada1 {
-            margin-top: 12vh;
+            margin-top: 12vh; /* Espaço no topo em relação à altura da tela */
         }
 
-        /* modal style */
+        /* Estilo do modal (janela de dica, é como se fosse um alert, aparece sobre a tela) */
         #modal {
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            max-width: 90%;
-            min-height: 300px;
-            background-color: #ffd900;
-            border: 0.5rem solid rgb(255, 162, 0);
-            padding: 1.2rem;
-            border-radius: 2rem;
-            z-index: 10;
-            }
+            position: fixed; /* Fixa o modal na tela mesmo ao rolar */
+            left: 50%; /* Centraliza na horizontal */
+            top: 50%; /* Centraliza na vertical */
+            transform: translate(-50%, -50%); /* Ajuste para ficar exatamente no centro */
+            width: 500px; /* Largura máxima do modal */
+            max-width: 90%; /* Responsividade: no máximo 90% da tela */
+            min-height: 300px; /* Altura mínima */
+            background-color: #ffd900; /* Cor de fundo amarela */
+            border: 0.5rem solid rgb(255, 162, 0); /* Borda grossa laranja */
+            padding: 1.2rem; /* Espaço interno */
+            border-radius: 2rem; /* Bordas arredondadas */
+            z-index: 10; /* Aparece acima de tudo */
+            transition: 0.5s; /* Suavidade ao aparecer/desaparecer */
+            opacity: 1; /* Visível */
+            pointer-events: all; /* Permite clicar */
+        }
 
+        /* Fundo escuro por trás do modal */
         #fade {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparência preta */
+            z-index: 9; /* Abaixo do modal */
             transition: 0.5s;
             opacity: 1;
             pointer-events: all;
         }
-        #modal {
-            transition: 0.5s;
-            opacity: 1;
-            pointer-events: all;
-            
-            }
 
+        /* Cabeçalho do modal */
         .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #625904;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            }
-        
-        .modal-text {
-            font-size: 5vh;
-            font-family:cursive;
+            display: flex; /* Flexbox para alinhar título e botão */
+            justify-content: space-between; /* Espaço entre título e botão */
+            align-items: center; /* Alinhamento vertical */
+            border-bottom: 2px solid #625904; /* Linha inferior */
+            margin-bottom: 1rem; /* Espaço abaixo */
+            padding-bottom: 1rem; /* Espaço interno inferior */
         }
-        
+
+        /* Texto principal do modal */
+        .modal-text {
+            font-size: 5vh; /* Tamanho do texto baseado na altura da tela */
+            font-family: cursive; /* Fonte estilizada */
+        }
+
+        /* Botão de fechar o modal */
         #close-modal {
             padding: 5px 10px;
             border: 2px solid gold;
@@ -74,53 +76,56 @@
             font-weight: bold;
         }
 
+        /* Estiliza parágrafos dentro do corpo do modal */
         .modal-body p {
             margin-bottom: 1rem;
-            }
+        }
 
+        /* Esconde o modal e o fundo escuro */
         #modal.hide,
         #fade.hide {
-            opacity: 0;
-            pointer-events: none;
-            }
+            opacity: 0; /* Torna invisível */
+            pointer-events: none; /* Impede cliques */
+        }
 
+        /* Ajuste de posição ao esconder o modal */
         #modal.hide {
             top: 0;
-            }
+        }
     </style>
 </head>
 <body>
-    <div class="">
-        <div> 
-            <img id="iconeSom" src="imagens/icone_som.png" alt="som" class="som" onclick="tocarSom()"> 
+    <!-- Área da lâmpada e ícone de som -->
+    <div>
+        <div>
+            <img id="iconeSom" src="imagens/icone_som.png" alt="som" class="som" onclick="tocarSom()">
         </div>
+        <!-- Áudio de fundo -->
         <audio id="myAudio">
             <source src="musica.mp3" type="audio/mpeg">
             Seu navegador
         </audio>
-        <!-- tag da lâmpada -->
-        <div> 
-            <img id="open-modal" src="./imagens/lampada2.png" alt="dica" class="som lampada1"> 
+        <!-- Lâmpada que abre a dica -->
+        <div>
+            <img id="open-modal" src="./imagens/lampada2.png" alt="dica" class="som lampada1">
         </div>
     </div>
 
-    <!-- modal -->
-    <div id="fade" class="hide"></div>
-    <div id="modal" class="hide">
-      <div class="modal-header">
-        <p style="font-weight: bold;"> Dica </p>
-        <button id="close-modal"> x </button>
-      </div>
-      <div class="modal-body">
-        <p class="modal-text"></p>
-
-      </div>
+    <!-- Modal de dica -->
+    <div id="fade" class="hide"></div> <!-- Fundo escuro -->
+    <div id="modal" class="hide"> <!-- Janela de dica -->
+        <div class="modal-header">
+            <p style="font-weight: bold;"> Dica </p>
+            <button id="close-modal"> x </button> <!-- Botão para fechar -->
+        </div>
+        <div class="modal-body">
+            <p class="modal-text"></p> <!-- Onde entra a dica -->
+        </div>
     </div>
 
-    <script src="javascript.js"></script>
+    <script src="javascript.js"></script> <!-- Script externo -->
     <script>
-        
-     
+       
     </script>
- </body>
+</body>
 </html>
