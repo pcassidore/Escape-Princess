@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Escape Princess Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60%;
+      transform: translate(-50%, -50%) scale(0.2);
+      animation: zoomIn 2s ease-out forwards;
+      z-index: 1;
+    }
+
+    @keyframes zoomIn {
+      to {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="bg.jpg" class="background" alt="Fundo">
+  <img src="title.png" class="title" alt="Título Animado">
+</body>
+</html>

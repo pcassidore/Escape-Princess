@@ -1,0 +1,81 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Viewport que limita a visão */
+#viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Mapa com largura 300vw */
+#room {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300vw;
+  height: 100vh;
+  background-image: url('desafio3_mapa.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform 0.1s ease-out;
+}
+
+/* Túnel genérico */
+.caminho {
+  position: absolute;
+  width: 8%;
+  height: 20%;
+  top: 40%;
+  cursor: pointer;
+}
+
+/* Labels dos túneis */
+.label {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Posições específicas baseadas na imagem */
+#tunel1 {
+  left: 5%;
+  top: 50%;
+}
+#tunel2 {
+  left: 7%;
+  top: 63%
+}
+#tunel3 {
+  left: 6.5%;
+  top: 82%
+}
+
+/* Caixa de mensagem */
+#mensagem {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 12px 24px;
+  font-size: 1.2em;
+  border-radius: 10px;
+  display: none;
+  z-index: 10;
+}
