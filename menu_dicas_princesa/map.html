@@ -7,6 +7,15 @@
 
     <link rel="stylesheet" href="style.css"> <!-- Link para um CSS externo -->
     <style>
+        /* Estiliza a imagem da princesa */
+        #princesa {
+            position: absolute; /* Permite posicionamento livre na tela */
+            top: 100px; /* Distância do topo da tela */
+            left: 100px; /* Distância da esquerda */
+            width: 65px; /* Largura da imagem */
+            height: auto; /* Altura ajustada automaticamente */
+            z-index: 5; /* Faz a princesa aparecer na frente de outros elementos */
+        }
         /* Define o fundo do corpo da página */
         body {
             background-color: black; /* Cor de fundo */
@@ -95,6 +104,10 @@
     </style>
 </head>
 <body>
+    <!-- Imagem da princesa -->
+    <div>
+        <img src="imagens/princesa_paradadireita.png" id="princesa">
+    </div>
     <!-- Área da lâmpada e ícone de som -->
     <div>
         <div>
@@ -125,6 +138,86 @@
 
     <script src="javascript.js"></script> <!-- Script externo -->
     <script>
+        // Variáveis da princesa
+        const princesa = document.getElementById("princesa");
+        let posX = 100; // Posição inicial horizontal
+        let posY = 100; // Posição inicial vertical
+        const velocidade = 10; // Velocidade de movimento
+
+        let ultimaDirecaoHorizontal = "direita"; // Guarda a direção horizontal
+        let teclaPressionada = null; // Controle de teclas pressionadas
+
+        // Movimentação com teclas
+        document.addEventListener("keydown", function(event) {
+            teclaPressionada = event.key;
+
+            if (event.key === "ArrowUp") {
+                posY -= velocidade;
+                princesa.src = "imagens/princesa_costas.png";
+            } else if (event.key === "ArrowDown") {
+                posY += velocidade;
+                princesa.src = ultimaDirecaoHorizontal === "direita" ? "imagens/princesa_direita.png" : "imagens/princesa_esquerda.png";
+            } else if (event.key === "ArrowLeft") {
+                posX -= velocidade;
+                ultimaDirecaoHorizontal = "esquerda";
+                princesa.src = "imagens/princesa_esquerda.png";
+            } else if (event.key === "ArrowRight") {
+                posX += velocidade;
+                ultimaDirecaoHorizontal = "direita";
+                princesa.src = "imagens/princesa_direita.png";
+            }
+
+            // Atualiza a posição da princesa
+            princesa.style.top = posY + "px";
+            princesa.style.left = posX + "px";
+        });
+
+        // Quando soltar a tecla
+        document.addEventListener("keyup", function(event) {
+            if (["ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown"].includes(event.key)) {
+                teclaPressionada = null;
+                princesa.src = ultimaDirecaoHorizontal === "direita" ? "imagens/princesa_paradadireita.png" : "imagens/princesa_paradaesquerda.png";
+            }
+        });
+
+        // Modal: abrir e fechar
+        const openModalButton = document.querySelector("#open-modal");
+        const closeModalButton = document.querySelector("#close-modal");
+        const modal = document.querySelector("#modal");
+        const fade = document.querySelector("#fade");
+        let map = 0; // Contador de mapas (dicas)
+
+        // Função para abrir/fechar o modal
+        const toggleModal = () => {
+            modal.classList.toggle("hide");
+            fade.classList.toggle("hide");
+
+            const lampadaImg = document.querySelector("#open-modal");
+            lampadaImg.src = modal.classList.contains("hide") ? "./imagens/lampada2.png" : "./imagens/lampada1.png";
+        };
+
+        // Atualiza o conteúdo da dica
+        const atualizarMapa = () => {
+            map = map % 3 + 1; // Alterna entre os mapas 1, 2 e 3
+            document.querySelector(".modal-text").innerHTML = mensagens[map];
+        };
+
+        // Eventos de clique para abrir e fechar o modal
+        openModalButton.addEventListener("click", () => {
+            atualizarMapa();
+            toggleModal();
+        });
+
+        [closeModalButton, fade].forEach((el) => {
+            el.addEventListener("click", () => toggleModal());
+        });
+              
+        // Mensagens que aparecem no modal
+        const mensagens = {
+            1: "1. Talvez o seu lado artístico lhe ajude em momentos como este. Então, olhe com cuidado para os quadros numerados: o quarto sempre precede o terceiro, que então dá lugar ao primeiro e ao segundo.",
+            2: "2. Preste atenção nos detalhes cintilantes: nem tudo que reluz é confiável, mas às vezes o brilho mais puro revela o segredo.",
+            3: "3. Nem sempre a trilha mais clara leva à liberdade; siga o sussurro do desconhecido para encontrar o verdadeiro caminho."
+        };
        
     </script>
 </body>
